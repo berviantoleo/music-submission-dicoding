@@ -1,0 +1,56 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+env:
+  PGUSER: postgres
+  PGHOST: "0.0.0.0"
+  PGPASSWORD: testpsqlpassword
+  PGDATABASE: musics
+  PGPORT: 5432
+jobs:
+  build:
+    services:
+      postgres:
+        image: postgres:13-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: testpsqlpassword
+          POSTGRES_DB: musics
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run lint
+    - name: Docker Build & Run
+      run: |
+        docker build . -t musicapi
+        docker run -e HOST=0.0.0.0 -e PORT=5000 -e PGUSER=${PGUSER} -e PGHOST=${PGHOST} -e PGPASSWORD=${PGPASSWORD} -e PGDATABASE=${PGDATABASE} -e PGPORT=${PGPORT} --name musicapi -p 5000:5000 musicapi npm run migrate up
+        docker start musicapi
+    - uses: matt-ball/newman-action@v0.2.4
+      with:
+        collection: postman/openapimusicv1.postman_collection.json
+        environment: postman/openapimusicv1.postman_environment.json
+    - name: Docker Stop
+      run: |
+        docker stop musicapi
+        docker rm musicapi

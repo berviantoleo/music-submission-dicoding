@@ -1,0 +1,11 @@
+const mapList = ({
+  id,
+  title,
+  performer,
+}) => ({
+  id,
+  title,
+  performer,
+});
+
+module.exports = { mapList };
