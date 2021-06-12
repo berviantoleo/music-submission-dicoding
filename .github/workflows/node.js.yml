@@ -48,8 +48,8 @@ jobs:
         docker start musicapi
     - uses: matt-ball/newman-action@v0.2.4
       with:
-        collection: postman/openapimusicv1.postman_collection.json
-        environment: postman/openapimusicv1.postman_environment.json
+        collection: postman/openapimusic.postman_collection.json
+        environment: postman/openapimusic.postman_environment.json
     - name: Docker Stop
       run: |
         docker stop musicapi
