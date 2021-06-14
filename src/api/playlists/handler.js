@@ -11,7 +11,6 @@ class PlaylistsHandler {
     this.addSongToPlaylistHandler = this.addSongToPlaylistHandler.bind(this);
     this.getSongsFromPlaylistHandler = this.getSongsFromPlaylistHandler.bind(this);
     this.deleteSongFromPlaylistHandler = this.deleteSongFromPlaylistHandler.bind(this);
-
   }
 
   async postPlaylistHandler(request, h) {
@@ -148,8 +147,8 @@ class PlaylistsHandler {
       return {
         status: 'success',
         data: {
-          songs
-        }
+          songs,
+        },
       };
     } catch (error) {
       if (error instanceof ClientError) {
@@ -207,7 +206,6 @@ class PlaylistsHandler {
       return response;
     }
   }
-
 }
 
 module.exports = PlaylistsHandler;

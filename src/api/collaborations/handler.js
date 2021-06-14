@@ -1,4 +1,5 @@
 const ClientError = require('../../exceptions/ClientError');
+const InvariantError = require('../../exceptions/InvariantError');
 
 class CollaborationsHandler {
   constructor(collaborationsService, playlistsService, validator) {

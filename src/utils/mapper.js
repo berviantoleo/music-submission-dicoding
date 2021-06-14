@@ -11,11 +11,11 @@ const mapList = ({
 const playlistMap = ({
   id,
   name,
-  username
+  username,
 }) => ({
   id,
   name,
-  username
-})
+  username,
+});
 
 module.exports = { mapList, playlistMap };
