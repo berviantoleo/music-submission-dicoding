@@ -8,4 +8,14 @@ const mapList = ({
   performer,
 });
 
-module.exports = { mapList };
+const playlistMap = ({
+  id,
+  name,
+  username
+}) => ({
+  id,
+  name,
+  username
+})
+
+module.exports = { mapList, playlistMap };
