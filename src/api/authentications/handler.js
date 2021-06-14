@@ -1,3 +1,5 @@
+const ClientError = require('../../exceptions/ClientError');
+
 class AuthenticationsHandler {
   constructor(authenticationsService, usersService, tokenManager, validator) {
     this.authenticationsService = authenticationsService;
@@ -51,13 +53,14 @@ class AuthenticationsHandler {
       return response;
     }
   }
+
   async putAuthenticationHandler(request, h) {
     try {
       this.validator.validatePutAuthenticationPayload(request.payload);
       const { refreshToken } = request.payload;
       await this.authenticationsService.verifyRefreshToken(refreshToken);
       const { id } = this.tokenManager.verifyRefreshToken(refreshToken);
-      const accessToken = this._tokenManager.generateAccessToken({ id });
+      const accessToken = this.tokenManager.generateAccessToken({ id });
       return {
         status: 'success',
         message: 'Access Token berhasil diperbarui',

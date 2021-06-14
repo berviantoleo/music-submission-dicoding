@@ -4,7 +4,7 @@ exports.up = (pgm) => {
       type: 'VARCHAR(50)',
       primaryKey: true,
     },
-    userId: {
+    playlistId: {
       type: 'VARCHAR(50)',
       notNull: true,
       references: 'playlists',
