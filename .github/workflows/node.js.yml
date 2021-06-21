@@ -47,6 +47,7 @@ jobs:
       run: |
         npm install pm2@latest -g
         pm2 start src/ --name music_server
+        pm2 ls
     - uses: matt-ball/newman-action@v0.2.4
       with:
         collection: postman/openapimusic.postman_collection.json
