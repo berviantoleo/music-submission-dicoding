@@ -43,6 +43,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run lint
+    - run: npm run migrate up
     - name: Docker Build
       run: docker build . -t musicapi
     - name: Run use pm2
