@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 env:
   PGUSER: postgres
-  PGHOST: "0.0.0.0"
+  PGHOST: postgres
   PGPASSWORD: testpsqlpassword
   PGDATABASE: musics
   PGPORT: 5432
