@@ -1,7 +1,7 @@
 const routes = (handler) => [
   {
     method: 'POST',
-    path: '/export/playlist/{id}',
+    path: '/exports/playlist/{id}',
     handler: handler.exportPlaylist,
     options: {
       auth: 'songsapp_jwt',
