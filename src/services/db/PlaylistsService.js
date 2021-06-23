@@ -86,7 +86,6 @@ class PlaylistsService {
       await this.cacheService.set(`playlistSong:${playlistId}`, JSON.stringify(mappedResult));
       return mappedResult;
     }
-
   }
 
   async deleteSongFromPlaylist({ playlistId, songId }) {
