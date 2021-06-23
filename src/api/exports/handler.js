@@ -14,7 +14,7 @@ class ExportsHandler {
       this.validator.validateExportNotesPayload(request.payload);
       const { id: playlistId } = request.params;
       const { id: credentialId } = request.auth.credentials;
-      await this.playlistsService.verifyPlaylistOwner(playlistId, credentialId);
+      await this.playlistService.verifyPlaylistOwner(playlistId, credentialId);
       const message = {
         playlistId,
         targetEmail: request.payload.targetEmail,
