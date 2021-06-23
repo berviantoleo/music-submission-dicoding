@@ -24,22 +24,17 @@ class UsersHandler {
       response.code(201);
       return response;
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (!(error instanceof ClientError)) {
         const response = h.response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         });
-        response.code(error.statusCode);
+        response.code(500);
+        console.error(error);
         return response;
       }
 
-      const response = h.response({
-        status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
-      console.error(error);
-      return response;
+      throw error;
     }
   }
 
@@ -54,22 +49,17 @@ class UsersHandler {
         },
       };
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (!(error instanceof ClientError)) {
         const response = h.response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         });
-        response.code(error.statusCode);
+        response.code(500);
+        console.error(error);
         return response;
       }
 
-      const response = h.response({
-        status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
-      console.error(error);
-      return response;
+      throw error;
     }
   }
 }

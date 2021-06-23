@@ -1,5 +1,4 @@
 const ClientError = require('../../exceptions/ClientError');
-const InvariantError = require('../../exceptions/InvariantError');
 
 class CollaborationsHandler {
   constructor(collaborationsService, playlistsService, validator) {
@@ -28,22 +27,17 @@ class CollaborationsHandler {
       response.code(201);
       return response;
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (!(error instanceof ClientError)) {
         const response = h.response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         });
-        response.code(error.statusCode);
+        response.code(500);
+        console.error(error);
         return response;
       }
-      // Server ERROR!
-      const response = h.response({
-        status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
-      console.error(error);
-      return response;
+
+      throw error;
     }
   }
 
@@ -61,34 +55,17 @@ class CollaborationsHandler {
         message: 'Kolaborasi berhasil dihapus',
       };
     } catch (error) {
-      if (error instanceof ClientError) {
+      if (!(error instanceof ClientError)) {
         const response = h.response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         });
-        response.code(error.statusCode);
+        response.code(500);
+        console.error(error);
         return response;
       }
 
-      // Server ERROR!
-      const response = h.response({
-        status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
-      console.error(error);
-      return response;
-    }
-  }
-
-  async verifyCollaborator(playlistId, userId) {
-    const query = {
-      text: 'SELECT * FROM collaborations WHERE "playlistId" = $1 AND "userId" = $2',
-      values: [playlistId, userId],
-    };
-    const result = await this.pool.query(query);
-    if (!result.rows.length) {
-      throw new InvariantError('Kolaborasi gagal diverifikasi');
+      throw error;
     }
   }
 }

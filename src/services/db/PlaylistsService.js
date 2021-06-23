@@ -7,10 +7,11 @@ const NotFoundError = require('../../exceptions/NotFoundError');
 const InvariantError = require('../../exceptions/InvariantError');
 
 class PlaylistsService {
-  constructor(collaborationService, songService) {
+  constructor(collaborationService, songService, cacheService) {
     this.pool = new Pool();
     this.collaborationService = collaborationService;
     this.songService = songService;
+    this.cacheService = cacheService;
   }
 
   async createPlaylist({ name, owner }) {
@@ -63,21 +64,29 @@ class PlaylistsService {
       values: [id, playlistId, songId],
     };
     const result = await this.pool.query(query);
-    console.log(JSON.stringify(result));
     if (!result.rowCount) {
       throw new InvariantError('Lagu gagal ditambahkan ke playlist');
     }
+    await this.cacheService.delete(`playlistSong:${playlistId}`);
   }
 
   async getSongsFromPlaylist(playlistId) {
-    const query = {
-      text: `SELECT songs.* FROM playlistsongs
+    try {
+      const result = await this.cacheService.get(`playlistSong:${playlistId}`);
+      return JSON.parse(result);
+    } catch (error) {
+      const query = {
+        text: `SELECT songs.* FROM playlistsongs
       LEFT JOIN songs ON songs.id = playlistsongs."songId"
       WHERE playlistsongs."playlistId" = $1`,
-      values: [playlistId],
-    };
-    const result = await this.pool.query(query);
-    return result.rows.map(mapList);
+        values: [playlistId],
+      };
+      const result = await this.pool.query(query);
+      const mappedResult = result.rows.map(mapList);
+      await this.cacheService.set(`playlistSong:${playlistId}`, JSON.stringify(mappedResult));
+      return mappedResult;
+    }
+
   }
 
   async deleteSongFromPlaylist({ playlistId, songId }) {
@@ -92,6 +101,8 @@ class PlaylistsService {
       if (!result.rowCount) {
         throw new InvariantError('Lagu gagal dihapus dari playlist');
       }
+
+      await this.cacheService.delete(`playlistSong:${playlistId}`);
     } catch (error) {
       if (error instanceof NotFoundError) {
         // mutasi ke invariant
@@ -101,7 +112,6 @@ class PlaylistsService {
   }
 
   async verifyPlaylistOwner(id, owner) {
-    // console.log(id);
     const query = {
       text: 'SELECT * FROM playlists WHERE id = $1',
       values: [id],

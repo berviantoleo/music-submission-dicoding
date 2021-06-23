@@ -3,6 +3,8 @@ require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 
+const ClientError = require('./exceptions/ClientError');
+
 // songs
 const songs = require('./api/songs');
 const SongService = require('./services/db/SongService');
@@ -29,12 +31,28 @@ const collaborations = require('./api/collaborations');
 const CollaborationsService = require('./services/db/CollaborationsService');
 const CollaborationsValidator = require('./validator/collaborations');
 
+// uploads
+const uploads = require('./api/uploads');
+const UploadService = require('./services/aws/UploadService');
+const UploadsValidator = require('./validator/uploads');
+
+// exports
+// eslint-disable-next-line no-underscore-dangle
+const _exports = require('./api/exports');
+const ProducerService = require('./services/rabbitmq/ProducerService');
+const ExportsValidator = require('./validator/exports');
+
+// cache
+const CacheService = require('./services/redis/CacheService');
+
 const init = async () => {
+  const cacheService = new CacheService();
   const songService = new SongService();
   const usersService = new UsersService();
   const authenticationsService = new AuthenticationsService();
   const collaborationsService = new CollaborationsService();
-  const playlistsService = new PlaylistsService(collaborationsService, songService);
+  const playlistsService = new PlaylistsService(collaborationsService, songService, cacheService);
+  const uploadService = new UploadService();
 
   const server = Hapi.server({
     port: process.env.PORT,
@@ -107,7 +125,38 @@ const init = async () => {
         validator: CollaborationsValidator,
       },
     },
+    {
+      plugin: uploads,
+      options: {
+        service: uploadService,
+        validator: UploadsValidator,
+      },
+    },
+    {
+      plugin: _exports,
+      options: {
+        service: ProducerService,
+        validator: ExportsValidator,
+      },
+    },
   ]);
+
+  server.ext('onPreResponse', (request, h) => {
+    // mendapatkan konteks response dari request
+    const { response } = request;
+
+    if (response instanceof ClientError) {
+      // membuat response baru dari response toolkit sesuai kebutuhan error handling
+      const newResponse = h.response({
+        status: 'fail',
+        message: response.message,
+      });
+      newResponse.code(response.statusCode);
+      return newResponse;
+    }
+    // jika bukan ClientError, lanjutkan dengan response sebelumnya (tanpa terintervensi)
+    return h.continue;
+  });
 
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
