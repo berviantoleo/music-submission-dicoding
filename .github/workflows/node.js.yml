@@ -61,3 +61,5 @@ jobs:
       run: yarn migrate up
     - name: Test
       run: yarn test --coverage
+    - name: Upload to Codecov
+      uses: codecov/codecov-action@v2
