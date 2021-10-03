@@ -1,6 +1,6 @@
 import { SongPayloadSchema } from './schema';
 import InvariantError from '../../exceptions/InvariantError';
-import { SongRequest } from '../../models/SongRequest';
+import { SongRequest } from '../../models/requests/SongRequest';
 
 export interface SongValidator {
   validateSongPayload(payload: SongRequest): void;

@@ -6,6 +6,8 @@ import SongService from "./SongService";
 import AuthorizationError from '../../exceptions/AuthorizationError';
 import NotFoundError from '../../exceptions/NotFoundError';
 import InvariantError from '../../exceptions/InvariantError';
+import { PlaylistResponse } from "../../models/response/PlaylistResponse";
+import { SimplifiedSong } from "../../models/SimplifiedSong";
 
 class PlaylistsService {
   private pool: Pool;
@@ -37,7 +39,7 @@ class PlaylistsService {
     return result.rows[0].id;
   }
 
-  async getPlaylists(owner: string): Promise<any> {
+  async getPlaylists(owner: string): Promise<PlaylistResponse[]> {
     const query = {
       text: `SELECT playlists.id, playlists.name, users.username FROM playlists
       LEFT JOIN collaborations ON collaborations."playlistId" = playlists.id
@@ -45,7 +47,7 @@ class PlaylistsService {
       WHERE playlists.owner = $1 OR collaborations."userId" = $1`,
       values: [owner],
     };
-    const result = await this.pool.query(query);
+    const result = await this.pool.query<PlaylistResponse>(query);
     return result.rows;
   }
 
@@ -76,7 +78,7 @@ class PlaylistsService {
     await this.cacheService.delete(`playlistSong:${playlistId}`);
   }
 
-  async getSongsFromPlaylist(playlistId: string): Promise<any> {
+  async getSongsFromPlaylist(playlistId: string): Promise<SimplifiedSong[]> {
     try {
       const result = await this.cacheService.get(`playlistSong:${playlistId}`);
       return JSON.parse(result);
@@ -87,7 +89,7 @@ class PlaylistsService {
       WHERE playlistsongs."playlistId" = $1`,
         values: [playlistId],
       };
-      const result = await this.pool.query(query);
+      const result = await this.pool.query<SimplifiedSong>(query);
       const data = result.rows;
       await this.cacheService.set(`playlistSong:${playlistId}`, JSON.stringify(data));
       return data;

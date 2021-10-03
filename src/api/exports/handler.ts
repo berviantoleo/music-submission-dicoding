@@ -2,6 +2,7 @@ import { Request, ResponseObject, ResponseToolkit } from "@hapi/hapi";
 import { ProducerService } from "../../services/rabbitmq/ProducerService";
 import PlaylistsService from '../../services/db/PlaylistsService';
 import { ExportsValidator } from "../../validator/exports";
+import { ExportRequest } from "../../models/requests/ExportRequest";
 
 class ExportsHandler {
   private service: ProducerService;
@@ -17,7 +18,7 @@ class ExportsHandler {
   }
 
   async exportPlaylist(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
-    this.validator.validateExportNotesPayload(request.payload);
+    this.validator.validateExportNotesPayload(request.payload as ExportRequest);
     const { id: playlistId } = request.params;
     const { id: credentialId } = request.auth.credentials;
     await this.playlistService.verifyPlaylistOwner(playlistId, credentialId as string);

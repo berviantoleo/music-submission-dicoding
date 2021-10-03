@@ -4,7 +4,7 @@ import argon2 from 'argon2';
 import InvariantError from '../../exceptions/InvariantError';
 import NotFoundError from '../../exceptions/NotFoundError';
 import AuthenticationError from '../../exceptions/AuthenticationError';
-import { UserCreationRequest } from '../../models/UserCreationRequest';
+import { UserCreationRequest } from '../../models/requests/UserCreationRequest';
 import { IdBased } from '../../models/IdBased';
 import { User, UserPassword } from '../../models/User';
 

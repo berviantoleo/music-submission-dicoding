@@ -1,6 +1,6 @@
 import InvariantError from '../../exceptions/InvariantError';
 import { UserPayloadSchema } from './schema';
-import { UserCreationRequest } from "../../models/UserCreationRequest";
+import { UserCreationRequest } from "../../models/requests/UserCreationRequest";
 
 export interface UserValidator {
   validateUserPayload(payload: UserCreationRequest): void;

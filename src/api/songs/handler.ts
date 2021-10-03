@@ -1,5 +1,9 @@
 import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
-import { SongRequest } from '../../models/SongRequest';
+import { StatusDataResponse } from '../../models/response/DataResponse';
+import { MessageResponse } from '../../models/response/MessageResponse';
+import { SimplifiedSong } from '../../models/SimplifiedSong';
+import { Song } from '../../models/Song';
+import { SongRequest } from '../../models/requests/SongRequest';
 import SongService from '../../services/db/SongService';
 import { SongValidator } from '../../validator/songs';
 
@@ -38,7 +42,7 @@ class SongHandler {
     return response;
   }
 
-  async getSongsHandler(): Promise<any> {
+  async getSongsHandler(): Promise<StatusDataResponse<SimplifiedSong[]>> {
     const songs = await this.service.getSongs();
     return {
       status: 'success',
@@ -48,7 +52,7 @@ class SongHandler {
     };
   }
 
-  async getSongByIdHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async getSongByIdHandler(request: Request): Promise<StatusDataResponse<Song>> {
     const { id } = request.params;
     const song = await this.service.getSongById(id);
     return {
@@ -59,7 +63,7 @@ class SongHandler {
     };
   }
 
-  async putSongByIdHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async putSongByIdHandler(request: Request): Promise<MessageResponse> {
     this.validator.validateSongPayload(<SongRequest>request.payload);
     const {
       title, year, performer, genre, duration,
@@ -76,7 +80,7 @@ class SongHandler {
     };
   }
 
-  async deleteSongByIdHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async deleteSongByIdHandler(request: Request): Promise<MessageResponse> {
     const { id } = request.params;
     await this.service.deleteSongById(id);
 

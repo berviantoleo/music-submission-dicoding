@@ -1,5 +1,7 @@
 import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
-import { UserCreationRequest } from '../../models/UserCreationRequest';
+import { StatusDataResponse } from '../../models/response/DataResponse';
+import { User } from '../../models/User';
+import { UserCreationRequest } from '../../models/requests/UserCreationRequest';
 import UsersService from '../../services/db/UsersService';
 import { UserValidator } from '../../validator/users';
 
@@ -31,7 +33,7 @@ class UsersHandler {
     return response;
   }
 
-  async getUserByIdHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async getUserByIdHandler(request: Request): Promise<StatusDataResponse<User>> {
     const { id } = request.params;
     const user = await this.service.getUserById(id);
     return {

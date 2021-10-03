@@ -1,12 +1,13 @@
 import InvariantError from '../../exceptions/InvariantError';
+import { CollaborationRequest } from '../../models/requests/CollaborationRequest';
 import { CollaborationPayloadSchema } from './schema';
 
 export interface CollaborationsValidator {
-  validateCollaborationPayload(payload: any): void;
+  validateCollaborationPayload(payload: CollaborationRequest): void;
 }
 
 const collaborationsValidator: CollaborationsValidator = {
-  validateCollaborationPayload: (payload: any) => {
+  validateCollaborationPayload: (payload: CollaborationRequest) => {
     const validationResult = CollaborationPayloadSchema.validate(payload);
 
     if (validationResult.error) {

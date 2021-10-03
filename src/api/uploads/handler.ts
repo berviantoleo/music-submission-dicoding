@@ -14,7 +14,7 @@ class UploadsHandler {
   }
 
   async uploadPictures(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
-    const { data } = request.payload as any;
+    const { data } = request.payload as Record<string, any>;
     this.validator.validateImageHeaders(data.hapi.headers);
     const pictureUrl = await this.service.writeFile(data, data.hapi);
     const response = h.response({

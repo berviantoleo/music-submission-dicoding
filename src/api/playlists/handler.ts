@@ -1,4 +1,10 @@
 import {Request, ResponseObject, ResponseToolkit} from '@hapi/hapi';
+import { PostPlaylistRequest } from '../../models/requests/PostPlaylistRequest';
+import { PostSongToPlaylistRequest } from '../../models/requests/PostSongToPlaylistRequest';
+import { StatusDataResponse } from '../../models/response/DataResponse';
+import { MessageResponse } from '../../models/response/MessageResponse';
+import { PlaylistResponse } from '../../models/response/PlaylistResponse';
+import { SimplifiedSong } from '../../models/SimplifiedSong';
 import PlaylistsService from "../../services/db/PlaylistsService";
 import { PlaylistsValidator } from '../../validator/playlists';
 
@@ -19,8 +25,8 @@ class PlaylistsHandler {
     this.deleteSongFromPlaylistHandler = this.deleteSongFromPlaylistHandler.bind(this);
   }
 
-  async postPlaylistHandler(request: Request , h: ResponseToolkit): Promise<ResponseObject> {
-      this.validator.validatePostPlaylistPayload(request.payload);
+  async postPlaylistHandler(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
+      this.validator.validatePostPlaylistPayload(request.payload as PostPlaylistRequest);
       const {
         name,
       } = request.payload as {name: string};
@@ -41,7 +47,7 @@ class PlaylistsHandler {
       return response;
   }
 
-  async getPlaylistsHandler(request: Request): Promise<any> {
+  async getPlaylistsHandler(request: Request): Promise<StatusDataResponse<PlaylistResponse[]>> {
     const { id: credentialId } = request.auth.credentials;
     const playlists = await this.service.getPlaylists(credentialId as string);
     return {
@@ -52,7 +58,7 @@ class PlaylistsHandler {
     };
   }
 
-  async deletePlaylistByIdHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async deletePlaylistByIdHandler(request: Request): Promise<MessageResponse> {
       const { id } = request.params;
       const { id: credentialId } = request.auth.credentials;
       await this.service.verifyPlaylistOwner(id, credentialId as string);
@@ -65,7 +71,7 @@ class PlaylistsHandler {
   }
 
   async addSongToPlaylistHandler(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
-      this.validator.validatePostSongToPlaylistPayload(request.payload);
+      this.validator.validatePostSongToPlaylistPayload(request.payload as PostSongToPlaylistRequest);
       const {
         songId,
       } = request.payload as {songId: string};
@@ -83,7 +89,7 @@ class PlaylistsHandler {
       return response;
   }
 
-  async getSongsFromPlaylistHandler(request: Request, _: ResponseToolkit): Promise<any> {
+  async getSongsFromPlaylistHandler(request: Request): Promise<StatusDataResponse<SimplifiedSong[]>> {
       const { id } = request.params;
       const { id: credentialId } = request.auth.credentials;
       await this.service.verifyPlaylistAccess(id, credentialId as string);
@@ -97,8 +103,8 @@ class PlaylistsHandler {
       };
   }
 
-  async deleteSongFromPlaylistHandler(request: Request, _: ResponseToolkit): Promise<any> {
-      this.validator.validatePostSongToPlaylistPayload(request.payload);
+  async deleteSongFromPlaylistHandler(request: Request): Promise<MessageResponse> {
+      this.validator.validatePostSongToPlaylistPayload(request.payload as PostSongToPlaylistRequest);
       const {
         songId,
       } = request.payload as {songId: string};

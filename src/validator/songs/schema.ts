@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { SongRequest } from '../../models/SongRequest';
+import { SongRequest } from '../../models/requests/SongRequest';
 
 const SongPayloadSchema = Joi.object<SongRequest>({
   title: Joi.string().required(),

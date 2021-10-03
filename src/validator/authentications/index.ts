@@ -4,27 +4,29 @@ import {
   DeleteAuthenticationPayloadSchema,
 } from './schema';
 import InvariantError from '../../exceptions/InvariantError';
+import { RefreshTokenRequest } from '../../models/requests/RefreshTokenRequest';
+import { LoginRequest } from '../../models/requests/LoginRequest';
 
 export interface AuthenticationsValidator {
-  validatePostAuthenticationPayload(payload: any): void;
-  validatePutAuthenticationPayload(payload: any): void;
-  validateDeleteAuthenticationPayload(payload: any): void;
+  validatePostAuthenticationPayload(payload: LoginRequest): void;
+  validatePutAuthenticationPayload(payload: RefreshTokenRequest): void;
+  validateDeleteAuthenticationPayload(payload: RefreshTokenRequest): void;
 }
 
 const authenticationsValidator: AuthenticationsValidator = {
-  validatePostAuthenticationPayload: (payload: any) => {
+  validatePostAuthenticationPayload: (payload: LoginRequest) => {
     const validationResult = PostAuthenticationPayloadSchema.validate(payload);
     if (validationResult.error) {
       throw new InvariantError(validationResult.error.message);
     }
   },
-  validatePutAuthenticationPayload: (payload: any) => {
+  validatePutAuthenticationPayload: (payload: RefreshTokenRequest) => {
     const validationResult = PutAuthenticationPayloadSchema.validate(payload);
     if (validationResult.error) {
       throw new InvariantError(validationResult.error.message);
     }
   },
-  validateDeleteAuthenticationPayload: (payload: any) => {
+  validateDeleteAuthenticationPayload: (payload: RefreshTokenRequest) => {
     const validationResult = DeleteAuthenticationPayloadSchema.validate(payload);
     if (validationResult.error) {
       throw new InvariantError(validationResult.error.message);

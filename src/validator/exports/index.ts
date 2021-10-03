@@ -1,12 +1,13 @@
 import ExportNotesPayloadSchema from './schema';
 import InvariantError from '../../exceptions/InvariantError';
+import { ExportRequest } from '../../models/requests/ExportRequest';
 
 export interface ExportsValidator {
-  validateExportNotesPayload(payload: any): void;
+  validateExportNotesPayload(payload: ExportRequest): void;
 }
 
 const exportsValidator: ExportsValidator = {
-  validateExportNotesPayload: (payload: any) => {
+  validateExportNotesPayload: (payload: ExportRequest) => {
     const validationResult = ExportNotesPayloadSchema.validate(payload);
 
     if (validationResult.error) {

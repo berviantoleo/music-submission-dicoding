@@ -1,4 +1,6 @@
 import { Request, ResponseObject, ResponseToolkit } from "@hapi/hapi";
+import { CollaborationRequest } from "../../models/requests/CollaborationRequest";
+import { MessageResponse } from "../../models/response/MessageResponse";
 import CollaborationsService from "../../services/db/CollaborationsService";
 import PlaylistsService from "../../services/db/PlaylistsService";
 import { CollaborationsValidator } from "../../validator/collaborations";
@@ -18,7 +20,7 @@ class CollaborationsHandler {
   }
 
   async postCollaborationHandler(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
-    this.validator.validateCollaborationPayload(request.payload);
+    this.validator.validateCollaborationPayload(request.payload as CollaborationRequest);
     const { id: credentialId } = request.auth.credentials as { id: string };
     const { playlistId, userId } = request.payload as { playlistId: string, userId: string };
     await this.playlistsService.verifyPlaylistOwner(playlistId, credentialId);
@@ -34,8 +36,8 @@ class CollaborationsHandler {
     return response;
   }
 
-  async deleteCollaborationHandler(request: Request, _: ResponseToolkit): Promise<any> {
-    this.validator.validateCollaborationPayload(request.payload);
+  async deleteCollaborationHandler(request: Request): Promise<MessageResponse> {
+    this.validator.validateCollaborationPayload(request.payload as CollaborationRequest);
     const { id: credentialId } = request.auth.credentials as { id: string };
     const { playlistId, userId } = request.payload as { playlistId: string, userId: string };
 

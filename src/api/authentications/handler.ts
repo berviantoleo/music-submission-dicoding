@@ -1,4 +1,8 @@
 import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
+import { LoginRequest } from '../../models/requests/LoginRequest';
+import { RefreshTokenRequest } from '../../models/requests/RefreshTokenRequest';
+import { MessageDataResponse } from '../../models/response/MessageDataResponse';
+import { MessageResponse } from '../../models/response/MessageResponse';
 import AuthenticationsService from "../../services/db/AuthenticationsService";
 import UsersService from "../../services/db/UsersService";
 import { TokenManager } from '../../tokenize/TokenManager';
@@ -24,7 +28,7 @@ class AuthenticationsHandler {
   }
 
   async postAuthenticationHandler(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
-    this.validator.validatePostAuthenticationPayload(request.payload);
+    this.validator.validatePostAuthenticationPayload(request.payload as LoginRequest);
     const { username, password } = request.payload as { username: string, password: string };
     const id = await this.usersService.verifyUserCredential(username, password);
 
@@ -45,8 +49,8 @@ class AuthenticationsHandler {
     return response;
   }
 
-  async putAuthenticationHandler(request: Request, _: ResponseToolkit): Promise<any> {
-    this.validator.validatePutAuthenticationPayload(request.payload);
+  async putAuthenticationHandler(request: Request): Promise<MessageDataResponse<string>> {
+    this.validator.validatePutAuthenticationPayload(request.payload as RefreshTokenRequest);
     const { refreshToken } = request.payload as { refreshToken: string };
     await this.authenticationsService.verifyRefreshToken(refreshToken);
     const { id } = this.tokenManager.verifyRefreshToken(refreshToken);
@@ -60,8 +64,8 @@ class AuthenticationsHandler {
     };
   }
 
-  async deleteAuthenticationHandler(request: Request, _: ResponseToolkit): Promise<any> {
-    this.validator.validateDeleteAuthenticationPayload(request.payload);
+  async deleteAuthenticationHandler(request: Request): Promise<MessageResponse> {
+    this.validator.validateDeleteAuthenticationPayload(request.payload as RefreshTokenRequest);
     const { refreshToken } = request.payload as { refreshToken: string };
     await this.authenticationsService.verifyRefreshToken(refreshToken);
     await this.authenticationsService.deleteRefreshToken(refreshToken);

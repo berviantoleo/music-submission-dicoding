@@ -58,8 +58,8 @@ const init = async () => {
   const uploadService = new UploadService();
 
   const server = Hapi.server({
-    port: process.env.PORT,
-    host: process.env.HOST,
+    port: process.env.PORT || 5000,
+    host: process.env.HOST || "localhost",
     routes: {
       cors: {
         origin: ['*'],
@@ -81,7 +81,7 @@ const init = async () => {
       sub: false,
       maxAgeSec: process.env.ACCESS_TOKEN_AGE,
     },
-    validate: (artifacts: any) => ({
+    validate: (artifacts: { decoded: { payload: { id: string } } }) => ({
       isValid: true,
       credentials: {
         id: artifacts.decoded.payload.id,
