@@ -8,7 +8,7 @@ const routes = (handler: UploadsHandler): ServerRoute[] => [
     options: {
       payload: {
         allow: 'multipart/form-data',
-        // @ts-expect-error
+        // @ts-expect-error error come from library
         multipart: true, // TODO: need to fix this definition
         output: 'stream',
         maxBytes: 500000, // 500KB

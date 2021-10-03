@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v2
@@ -41,9 +41,9 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run lint
-    - run: npm run migrate up
+    - run: yarn
+    - run: yarn lint
+    - run: yarn migrate up
 #    - name: Docker Build
 #      run: docker build . -t musicapi
 #    - name: Run use pm2
