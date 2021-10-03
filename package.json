@@ -9,7 +9,9 @@
     "start-prod": "NODE_ENV=production node ./lib/server.js",
     "start-dev": "ts-node-dev -r dotenv/config ./src/server.ts",
     "lint": "eslint ./src",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "test": "jest",
+    "test:dotenv": "jest --setupFiles dotenv/config"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.33.0",

@@ -53,6 +53,11 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn
-    - run: yarn lint
-    - run: yarn migrate up
+    - name: Package Install
+      run: yarn
+    - name: Lint
+      run: yarn lint
+    - name: Migrate DB
+      run: yarn migrate up
+    - name: Test
+      run: yarn test --coverage
