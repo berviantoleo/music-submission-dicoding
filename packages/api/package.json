@@ -6,8 +6,10 @@
   "author": "Bervianto Leo Pratama <bervianto.leo@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "start-prod": "NODE_ENV=production node ./lib/server.js",
     "start-dev": "ts-node-dev -r dotenv/config ./src/server.ts",
+    "fix-lint": "eslint . --ext .ts --fix",
     "lint": "eslint . --ext .ts",
     "migrate": "node-pg-migrate",
     "test": "jest",

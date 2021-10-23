@@ -1,10 +1,10 @@
-import 'dotenv/config';
 import amqp from 'amqplib';
 import PlaylistService from './PlaylistService';
 import MailSender from './MailSender';
 import Listener from './Listener';
 
 const init = async () => {
+  console.log("Initialize Consumer");
   const playlistService = new PlaylistService();
   const mailSender = new MailSender();
   const listener = new Listener(playlistService, mailSender);
@@ -14,6 +14,7 @@ const init = async () => {
     durable: true,
   });
   channel.consume('export:playlist', listener.listen, { noAck: true });
+  console.log("Consumer Ready");
 };
 
 init();

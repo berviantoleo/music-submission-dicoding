@@ -8,26 +8,23 @@
     "lib"
   ],
   "scripts": {
+    "build": "tsc",
     "fix-lint": "eslint . --ext .ts --fix",
     "lint": "eslint . --ext .ts",
-    "build": "tsc",
     "start": "node lib/consumer.js",
-    "start-dev": "ts-node-dev src/consumer.ts",
+    "start-dev": "ts-node-dev -r dotenv/config src/consumer.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:dotenv": "jest --setupFiles dotenv/config"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/berviantoleo/music-consumer.git"
-  },
+  "repository": "https://github.com/berviantoleo/music-submission-dicoding.git",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bervianto Leo Pratama",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/berviantoleo/music-consumer/issues"
+    "url": "https://github.com/berviantoleo/music-submission-dicoding/issues"
   },
-  "homepage": "https://github.com/berviantoleo/music-consumer#readme",
+  "homepage": "https://github.com/berviantoleo/music-submission-dicoding#readme",
   "dependencies": {
     "amqplib": "^0.8.0",
     "dotenv": "^10.0.0",
