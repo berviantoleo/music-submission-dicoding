@@ -58,7 +58,7 @@ jobs:
     - name: Lint
       run: yarn lerna run lint
     - name: Migrate DB
-      run: yarn lerna run migrate up --scope=@berviantoleo/music-api
+      run: yarn lerna run migrate --scope=@berviantoleo/music-api -- -- up
     - name: Test
       run: yarn lerna run test:coverage
     - name: Upload to Codecov
