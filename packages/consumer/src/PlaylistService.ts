@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { Songs } from './Songs';
+import { Songs } from './models/Songs';
 
 class PlaylistService {
 

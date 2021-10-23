@@ -14,7 +14,8 @@
     "start": "node lib/consumer.js",
     "start-dev": "ts-node-dev src/consumer.ts",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:dotenv": "jest --setupFiles dotenv/config"
   },
   "repository": {
     "type": "git",
