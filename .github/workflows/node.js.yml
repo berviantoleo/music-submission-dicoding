@@ -78,6 +78,7 @@ jobs:
   docker-build:
     needs: "build"
     name: "Docker Build"
+    if: ${{ github.event_name == 'push' }}
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v2
