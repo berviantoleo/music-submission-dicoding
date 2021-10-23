@@ -56,10 +56,10 @@ jobs:
     - name: Package Install
       run: yarn
     - name: Lint
-      run: yarn lint
+      run: yarn lerna run lint
     - name: Migrate DB
-      run: yarn migrate up
+      run: yarn lerna run migrate up --scope=@berviantoleo/music-api
     - name: Test
-      run: yarn test --coverage
+      run: yarn lerna run test:coverage
     - name: Upload to Codecov
       uses: codecov/codecov-action@v2

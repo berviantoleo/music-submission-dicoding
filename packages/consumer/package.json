@@ -1,0 +1,43 @@
+{
+  "name": "@berviantoleo/music-consumer",
+  "version": "1.0.0",
+  "description": "Music consumer",
+  "main": "lib/consumer.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "fix-lint": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .ts",
+    "build": "tsc",
+    "start": "node lib/consumer.js",
+    "start-dev": "ts-node-dev src/consumer.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berviantoleo/music-consumer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berviantoleo/music-consumer/issues"
+  },
+  "homepage": "https://github.com/berviantoleo/music-consumer#readme",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "dotenv": "^10.0.0",
+    "nodemailer": "^6.6.2",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.13",
+    "@types/nodemailer": "^6.4.4",
+    "@types/pg": "^8.6.1"
+  }
+}
