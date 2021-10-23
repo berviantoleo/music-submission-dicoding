@@ -1,13 +1,8 @@
-FROM node:14-alpine as build
-COPY package.json yarn.lock ./
-RUN yarn --frozen-lockfile
-COPY src/ src/
-COPY tsconfig.json tsconfig.json
-RUN yarn build
-
-FROM node:14-alpine as runtime
+FROM node:14-alpine
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn --frozen-lockfile --production
-COPY --from=build lib/ lib/
+COPY package.json ./
+RUN yarn --production
+COPY lib/ lib/
+RUN adduser -D openmusicconsumer && chown -R openmusicconsumer /app
+USER openmusicconsumer
 CMD ["yarn", "start"]

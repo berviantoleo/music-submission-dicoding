@@ -108,6 +108,13 @@ jobs:
           images: |
             berviantoleo/music-api-dicoding
             ghcr.io/${{ github.repository }}
+      - name: Docker metadata Consumer
+        id: meta-consumer
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            berviantoleo/music-consumer-dicoding
+            ghcr.io/${{ github.repository }}-consumer
       - name: Build and push (Web API)
         uses: docker/build-push-action@v2
         with:
@@ -115,3 +122,10 @@ jobs:
           push: true
           tags: ${{ steps.meta-webapi.outputs.tags }}
           labels: ${{ steps.meta-webapi.outputs.labels }}
+      - name: Build and push (Consumer)
+        uses: docker/build-push-action@v2
+        with:
+          context: packages/consumer
+          push: true
+          tags: ${{ steps.meta-consumer.outputs.tags }}
+          labels: ${{ steps.meta-consumer.outputs.labels }}
