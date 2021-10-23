@@ -85,5 +85,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: compiled-libs
+          path: packages/
       - name: Check files
-        run: ls -la
+        run: |
+          ls -la packages/api/lib
+          ls -la packages/consumer/lib
