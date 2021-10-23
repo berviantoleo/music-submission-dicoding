@@ -1,0 +1,43 @@
+{
+  "name": "@berviantoleo/music-api",
+  "version": "1.1.0",
+  "main": "src/server.js",
+  "repository": "https://github.com/berviantoleo/music-submission-dicoding.git",
+  "author": "Bervianto Leo Pratama <bervianto.leo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start-prod": "NODE_ENV=production node ./lib/server.js",
+    "start-dev": "ts-node-dev -r dotenv/config ./src/server.ts",
+    "fix-lint": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .ts",
+    "migrate": "node-pg-migrate",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:dotenv": "jest --setupFiles dotenv/config"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.33.0",
+    "@aws-sdk/s3-request-presigner": "^3.33.0",
+    "@hapi/hapi": "^20.2.0",
+    "@hapi/jwt": "^2.1.0",
+    "amqplib": "^0.8.0",
+    "argon2": "^0.28.2",
+    "dotenv": "^10.0.0",
+    "joi": "^17.4.2",
+    "nanoid": "^3.1.25",
+    "node-pg-migrate": "^6.0.0",
+    "pg": "^8.7.1",
+    "redis": "^3.1.2",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/hapi__hapi": "^20.0.9",
+    "@types/hapi__jwt": "^2.0.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.10.2",
+    "@types/redis": "^2.8.32"
+  }
+}

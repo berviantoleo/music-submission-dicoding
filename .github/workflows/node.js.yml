@@ -5,23 +5,24 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-env:
-  PGUSER: postgres
-  PGHOST: localhost
-  PGPASSWORD: testpsqlpassword
-  PGDATABASE: musics
-  PGPORT: 5432
-  REDIS_SERVER: localhost
-  REDIS_PORT: 6379
-  RABBITMQ_SERVER: amqp://localhost
-  ACCESS_TOKEN_KEY: fa3dfb26baa6cf6cb78ba2782a328f8242a6104561fbacda3a8fc09acb0dcdb2
-  REFRESH_TOKEN_KEY: 43ca7b289d3c3e4eaaa837eb6ab7a3a0b94b599a910ffd3f1c78a82dba40d1c9
-  ACCESS_TOKEN_AGE: 1800
+    branches: [main]
 jobs:
   build:
+    name: "Build & Test"
+    env:
+      PGUSER: postgres
+      PGHOST: localhost
+      PGPASSWORD: testpsqlpassword
+      PGDATABASE: musics
+      PGPORT: 5432
+      REDIS_SERVER: localhost
+      REDIS_PORT: 6379
+      RABBITMQ_SERVER: amqp://localhost
+      ACCESS_TOKEN_KEY: fa3dfb26baa6cf6cb78ba2782a328f8242a6104561fbacda3a8fc09acb0dcdb2
+      REFRESH_TOKEN_KEY: 43ca7b289d3c3e4eaaa837eb6ab7a3a0b94b599a910ffd3f1c78a82dba40d1c9
+      ACCESS_TOKEN_AGE: 1800
     services:
       postgres:
         image: postgres:13-alpine
@@ -48,18 +49,84 @@ jobs:
         node-version: [14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Package Install
-      run: yarn
-    - name: Lint
-      run: yarn lint
-    - name: Migrate DB
-      run: yarn migrate up
-    - name: Test
-      run: yarn test --coverage
-    - name: Upload to Codecov
-      uses: codecov/codecov-action@v2
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Package Install
+        run: yarn
+      - name: Lint
+        run: yarn lerna run lint
+      - name: Migrate DB
+        run: yarn lerna run migrate --scope=@berviantoleo/music-api -- -- up
+      - name: Test
+        run: yarn lerna run test:coverage
+      - name: Upload to Codecov
+        if: ${{ matrix.node-version == '16.x' }}
+        uses: codecov/codecov-action@v2
+      - name: Build
+        run: yarn lerna run build
+      - name: Store Artifacts
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.node-version == '16.x' }}
+        with:
+          name: compiled-libs
+          path: |
+            packages/api/lib/**/*
+            packages/consumer/lib/**/*
+  docker-build:
+    needs: "build"
+    name: "Docker Build"
+    if: ${{ github.event_name == 'push' }}
+    runs-on: "ubuntu-20.04"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: compiled-libs
+          path: packages/
+      - name: Check files
+        run: |
+          ls -la packages/api/lib
+          ls -la packages/consumer/lib
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker metadata Web API
+        id: meta-webapi
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            berviantoleo/music-api-dicoding
+            ghcr.io/${{ github.repository }}
+      - name: Docker metadata Consumer
+        id: meta-consumer
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            berviantoleo/music-consumer-dicoding
+            ghcr.io/${{ github.repository }}-consumer
+      - name: Build and push (Web API)
+        uses: docker/build-push-action@v2
+        with:
+          context: packages/api
+          push: true
+          tags: ${{ steps.meta-webapi.outputs.tags }}
+          labels: ${{ steps.meta-webapi.outputs.labels }}
+      - name: Build and push (Consumer)
+        uses: docker/build-push-action@v2
+        with:
+          context: packages/consumer
+          push: true
+          tags: ${{ steps.meta-consumer.outputs.tags }}
+          labels: ${{ steps.meta-consumer.outputs.labels }}

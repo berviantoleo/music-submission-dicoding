@@ -1,49 +1,22 @@
 {
-  "name": "music-submission-1-dicoding",
-  "version": "1.1.0",
-  "main": "src/server.js",
-  "repository": "https://github.com/berviantoleo/music-submission-1-dicoding.git",
+  "name": "music-submission-dicoding",
+  "version": "1.0.0",
+  "description": "Music Submission Dicoding",
+  "repository": "https://github.com/berviantoleo/music-submission-dicoding.git",
   "author": "Bervianto Leo Pratama <bervianto.leo@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "start-prod": "NODE_ENV=production node ./lib/server.js",
-    "start-dev": "ts-node-dev -r dotenv/config ./src/server.ts",
-    "lint": "eslint ./src",
-    "migrate": "node-pg-migrate",
-    "test": "jest",
-    "test:dotenv": "jest --setupFiles dotenv/config"
-  },
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.33.0",
-    "@aws-sdk/s3-request-presigner": "^3.33.0",
-    "@hapi/hapi": "^20.2.0",
-    "@hapi/jwt": "^2.1.0",
-    "amqplib": "^0.8.0",
-    "argon2": "^0.28.2",
-    "dotenv": "^10.0.0",
-    "joi": "^17.4.2",
-    "nanoid": "^3.1.25",
-    "node-pg-migrate": "^6.0.0",
-    "pg": "^8.7.1",
-    "redis": "^3.1.2",
-    "sequelize": "^6.6.5"
-  },
+  "private": true,
   "devDependencies": {
-    "@types/amqplib": "^0.8.2",
-    "@types/dotenv": "^8.2.0",
-    "@types/hapi__hapi": "^20.0.9",
-    "@types/hapi__jwt": "^2.0.1",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^16.10.2",
-    "@types/redis": "^2.8.32",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
-    "jest": "^27.2.1",
-    "ts-jest": "^27.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.1.0",
+    "jest": "^27.3.1",
+    "lerna": "^4.0.0",
+    "ts-jest": "^27.0.7",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.4.3"
-  }
+    "typescript": "^4.4.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

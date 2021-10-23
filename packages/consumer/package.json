@@ -1,0 +1,41 @@
+{
+  "name": "@berviantoleo/music-consumer",
+  "version": "1.0.0",
+  "description": "Music consumer",
+  "main": "lib/consumer.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "fix-lint": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .ts",
+    "start": "node lib/consumer.js",
+    "start-dev": "ts-node-dev -r dotenv/config src/consumer.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:dotenv": "jest --setupFiles dotenv/config"
+  },
+  "repository": "https://github.com/berviantoleo/music-submission-dicoding.git",
+  "keywords": [],
+  "author": "Bervianto Leo Pratama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/berviantoleo/music-submission-dicoding/issues"
+  },
+  "homepage": "https://github.com/berviantoleo/music-submission-dicoding#readme",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "dotenv": "^10.0.0",
+    "nodemailer": "^6.6.2",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.13",
+    "@types/nodemailer": "^6.4.4",
+    "@types/pg": "^8.6.1"
+  }
+}
