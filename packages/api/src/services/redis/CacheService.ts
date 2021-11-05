@@ -42,6 +42,7 @@ class CacheService {
         if (error) {
           return reject(error);
         }
+        console.log(`Deleted cache key: ${key}`);
         return resolve(count);
       });
     });

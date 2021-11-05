@@ -3,5 +3,5 @@ export interface SongRequest {
   year: number;
   performer: string;
   genre: string;
-  duration: string;
+  duration: number;
 }
