@@ -9,7 +9,7 @@ export interface SongAttributes {
   duration: number;
 }
 
-export interface SongCreationAttributes extends Optional<SongAttributes, "id"> { }
+export type SongCreationAttributes = Optional<SongAttributes, "id">
 
 export class Song extends Model<SongAttributes, SongCreationAttributes> implements SongAttributes {
   public id!: string;

@@ -5,7 +5,6 @@ import NotFoundError from '../../exceptions/NotFoundError';
 import InvariantError from '../../exceptions/InvariantError';
 import CacheService from '../redis/CacheService';
 import { SongRequest } from '../../models/requests/SongRequest';
-import { IdBased } from '../../models/IdBased';
 import { SimplifiedSong } from '../../models/SimplifiedSong';
 import { Song } from '../../models/Song';
 
