@@ -1,42 +1,39 @@
-import { Pool } from 'pg';
+import { ModelCtor, Sequelize } from 'sequelize';
 import InvariantError from '../../exceptions/InvariantError';
+import { Authentication } from '../../models/Authentication';
 
 class AuthenticationsService {
-  private pool : Pool;
-  constructor() {
-    this.pool = new Pool();
+
+  private db: ModelCtor<Authentication>;
+  constructor(sequelize: Sequelize) {
+    this.db = sequelize.models.Authentication as ModelCtor<Authentication>;
   }
 
   async addRefreshToken(token: string): Promise<void> {
-    const query = {
-      text: 'INSERT INTO authentications VALUES($1)',
-      values: [token],
-    };
-
-    await this.pool.query(query);
+    await this.db.create({
+      token
+    });
   }
 
   async verifyRefreshToken(token: string): Promise<void> {
-    const query = {
-      text: 'SELECT token FROM authentications WHERE token = $1',
-      values: [token],
-    };
+    const result = await this.db.count({
+      where: {
+        token
+      }
+    });
 
-    const result = await this.pool.query(query);
-
-    if (!result.rowCount) {
+    if (!result) {
       throw new InvariantError('Refresh token tidak valid');
     }
   }
 
   async deleteRefreshToken(token: string): Promise<void> {
     await this.verifyRefreshToken(token);
-
-    const query = {
-      text: 'DELETE FROM authentications WHERE token = $1',
-      values: [token],
-    };
-    await this.pool.query(query);
+    await this.db.destroy({
+      where: {
+        token
+      }
+    });
   }
 }
 

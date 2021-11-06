@@ -53,8 +53,8 @@ import CacheService from './services/redis/CacheService';
 const init = async () => {
   const cacheService = new CacheService();
   const songService = new SongService(cacheService, sequelize);
-  const usersService = new UsersService();
-  const authenticationsService = new AuthenticationsService();
+  const usersService = new UsersService(sequelize);
+  const authenticationsService = new AuthenticationsService(sequelize);
   const collaborationsService = new CollaborationsService();
   const playlistsService = new PlaylistsService(collaborationsService, songService, cacheService);
   const uploadService = new UploadService();

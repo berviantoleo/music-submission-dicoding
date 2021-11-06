@@ -53,6 +53,4 @@ export function createSongModel(sequelize: Sequelize) {
     tableName: "Song",
     paranoid: true
   });
-
-  return Song;
 }

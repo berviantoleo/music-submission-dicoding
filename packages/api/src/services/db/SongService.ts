@@ -49,7 +49,9 @@ class SongService {
       const result = await this.cacheService.get('songs');
       return JSON.parse(result) as SimplifiedSong[];
     } catch (error) {
-      const result = await this.db.findAll();
+      const result = await this.db.findAll({
+        attributes: ['id', 'title', 'performer']
+      });
       await this.cacheService.set('songs', JSON.stringify(result));
       return result;
     }
@@ -57,7 +59,7 @@ class SongService {
 
   async getSongById(id: string): Promise<Song> {
     const result = await this.db.findByPk(id);
-    if (result == null) {
+    if (result === null) {
       throw new InvariantError("Lagu tidak ditemukan");
     }
     return result;
