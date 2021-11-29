@@ -9,7 +9,7 @@ let usersService: UsersService;
 
 describe("UsersService Test", () => {
   beforeAll(async () => {
-    await sequelize.sync({ force: true });
+    await sequelize.sync();
     usersService = new UsersService(sequelize);
   })
 

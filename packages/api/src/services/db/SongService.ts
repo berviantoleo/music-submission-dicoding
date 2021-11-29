@@ -118,7 +118,7 @@ class SongService {
       });
     } catch (error) {
       console.log(error);
-      if (error instanceof InvariantError) {
+      if (error instanceof NotFoundError) {
         throw error;
       } else {
         throw new InvariantError("Lagu tidak berhasil diupdate");
