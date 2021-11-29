@@ -5,6 +5,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL || '');
 
 initiateModel(sequelize);
 
-sequelize.sync();
-
 export default sequelize;

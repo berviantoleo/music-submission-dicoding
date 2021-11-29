@@ -51,6 +51,8 @@ import { ExportsPluginOptions } from './api/exports';
 import CacheService from './services/redis/CacheService';
 
 const init = async () => {
+  await sequelize.sync();
+
   const cacheService = new CacheService();
   const songService = new SongService(cacheService, sequelize);
   const usersService = new UsersService(sequelize);
