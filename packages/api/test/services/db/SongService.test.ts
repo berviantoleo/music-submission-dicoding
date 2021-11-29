@@ -2,10 +2,8 @@ import InvariantError from "../../../src/exceptions/InvariantError";
 import SongService from "../../../src/services/db/SongService";
 import CacheService from "../../../src/services/redis/CacheService";
 import sequelize from "../../../src/sequelize";
-import { UserCreationRequest } from "../../../src/models/requests/UserCreationRequest";
-import NotFoundError from "../../../src/exceptions/NotFoundError";
-import AuthenticationError from "../../../src/exceptions/AuthenticationError";
 import { SongRequest } from "../../../src/models/requests/SongRequest";
+import NotFoundError from "../../../src/exceptions/NotFoundError";
 
 jest.mock('../../../src/services/redis/CacheService');
 
