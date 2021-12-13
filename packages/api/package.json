@@ -28,14 +28,13 @@
     "nanoid": "^3.1.25",
     "node-pg-migrate": "^6.0.0",
     "pg": "^8.7.1",
-    "redis": "^3.1.2",
+    "redis": "^4.0.0",
     "sequelize": "^6.9.0"
   },
   "devDependencies": {
     "@types/amqplib": "^0.8.2",
     "@types/dotenv": "^8.2.0",
     "@types/hapi__hapi": "^20.0.9",
-    "@types/hapi__jwt": "^2.0.1",
-    "@types/redis": "^2.8.32"
+    "@types/hapi__jwt": "^2.0.1"
   }
 }
