@@ -1,51 +1,39 @@
-import redis from 'redis';
+import { createClient } from 'redis';
 
 class CacheService {
-  private client: redis.RedisClient;
+  private client;
   constructor() {
-    this.client = redis.createClient({
-      host: process.env.REDIS_SERVER || "",
+    this.client = createClient({
+      url: process.env.REDIS_SERVER || "",
     });
-    this.client.on('error', (error) => {
+    this.client.on('error', (error: any) => {
       console.error(error);
     });
   }
 
-  set(key: string, value: string, expirationInSecond = 3600): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this.client.set(key, value, 'EX', expirationInSecond, (error, ok) => {
-        if (error) {
-          return reject(error);
-        }
-        return resolve(ok || "OK");
-      });
+  async set(key: string, value: string, expirationInSecond = 3600): Promise<void> {
+    await this.client.connect();
+    await this.client.set(key, value, {
+      EX: expirationInSecond,
     });
+    await this.client.disconnect();
   }
 
-  get(key: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this.client.get(key, (error, reply) => {
-        if (error) {
-          return reject(error);
-        }
-        if (reply === null) {
-          return reject(new Error('Cache tidak ditemukan'));
-        }
-        return resolve(reply.toString());
-      });
-    });
+  async get(key: string): Promise<string> {
+    await this.client.connect();
+    const value = await this.client.get(key);
+    if (value === null) {
+      throw new Error('Cache tidak ditemukan');
+    }
+    await this.client.disconnect();
+    return value;
   }
 
-  delete(key: string): Promise<number> {
-    return new Promise<number>((resolve, reject) => {
-      this.client.del(key, (error, count) => {
-        if (error) {
-          return reject(error);
-        }
-        console.log(`Deleted cache key: ${key}`);
-        return resolve(count);
-      });
-    });
+  async delete(key: string): Promise<number> {
+    await this.client.connect();
+    const result = await this.client.del(key);
+    await this.client.disconnect();
+    return result;
   }
 }
 
