@@ -1,6 +1,8 @@
 import Hapi from '@hapi/hapi';
 import { plugin as Jwt } from '@hapi/jwt';
 
+import sequelize from './sequelize';
+
 import ClientError from './exceptions/ClientError';
 
 // songs
@@ -49,10 +51,12 @@ import { ExportsPluginOptions } from './api/exports';
 import CacheService from './services/redis/CacheService';
 
 const init = async () => {
+  await sequelize.sync();
+
   const cacheService = new CacheService();
-  const songService = new SongService(cacheService);
-  const usersService = new UsersService();
-  const authenticationsService = new AuthenticationsService();
+  const songService = new SongService(cacheService, sequelize);
+  const usersService = new UsersService(sequelize);
+  const authenticationsService = new AuthenticationsService(sequelize);
   const collaborationsService = new CollaborationsService();
   const playlistsService = new PlaylistsService(collaborationsService, songService, cacheService);
   const uploadService = new UploadService();
