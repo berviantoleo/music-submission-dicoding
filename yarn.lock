@@ -515,6 +515,17 @@
     "@aws-sdk/util-arn-parser" "3.37.0"
     tslib "^2.3.0"
 
+"@aws-sdk/middleware-sdk-s3@3.45.0":
+  version "3.45.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-sdk-s3/-/middleware-sdk-s3-3.45.0.tgz#41fba8c6b8feaff6c18e35eb5595fae2e4e7c1e6"
+  integrity sha512-V4rnR4pnCxbZOMIFLkIEejmvrW3cujB1OECsK4/fmIlxpgImwYhHbCvFRG/upe92oltehqddGtkCxglmHNMs3g==
+  dependencies:
+    "@aws-sdk/protocol-http" "3.40.0"
+    "@aws-sdk/signature-v4" "3.45.0"
+    "@aws-sdk/types" "3.40.0"
+    "@aws-sdk/util-arn-parser" "3.37.0"
+    tslib "^2.3.0"
+
 "@aws-sdk/middleware-sdk-sts@3.40.0":
   version "3.40.0"
   resolved "https://registry.npmjs.org/@aws-sdk/middleware-sdk-sts/-/middleware-sdk-sts-3.40.0.tgz#3efefc29176d5078915b61d17105f8bbee86ff5e"
@@ -625,13 +636,13 @@
     tslib "^2.3.0"
 
 "@aws-sdk/s3-request-presigner@^3.39.0":
-  version "3.44.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.44.0.tgz#d465ae86d3194137fe7960a0c92ff27deb2b3e4a"
-  integrity sha512-PYAgoYu5dMaKSrr7eJlTGUROb5G98iYt0Vq8a7MMa1ZvIArsPB2b8tPS7DzvpMb4Jx8C7ni6kf+0F9YWMmOOpQ==
+  version "3.45.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.45.0.tgz#ace7635c81fb9712db547ee5128d9a636f18f02d"
+  integrity sha512-kwL9rzvX5cMY0VQq+/mWcSl9l2Cut60UpR3J91KvCn7WYCr4QtNlni9w6MO7qdJWZldvlYgoMdCuxi+0lrzvbA==
   dependencies:
-    "@aws-sdk/middleware-sdk-s3" "3.41.0"
+    "@aws-sdk/middleware-sdk-s3" "3.45.0"
     "@aws-sdk/protocol-http" "3.40.0"
-    "@aws-sdk/signature-v4" "3.40.0"
+    "@aws-sdk/signature-v4" "3.45.0"
     "@aws-sdk/smithy-client" "3.41.0"
     "@aws-sdk/types" "3.40.0"
     "@aws-sdk/util-create-request" "3.41.0"
@@ -654,6 +665,17 @@
   version "3.40.0"
   resolved "https://registry.npmjs.org/@aws-sdk/signature-v4/-/signature-v4-3.40.0.tgz#9de1b4e1130f68394df3232882805896c2d20e45"
   integrity sha512-Q1GNZJRCS3W2qsRtDsX/b6EOSfMXfr6TW46N3LnLTGYZ3KAN2SOSJ1DsW59AuGpEZyRmOhJ9L/Q5U403+bZMXQ==
+  dependencies:
+    "@aws-sdk/is-array-buffer" "3.37.0"
+    "@aws-sdk/types" "3.40.0"
+    "@aws-sdk/util-hex-encoding" "3.37.0"
+    "@aws-sdk/util-uri-escape" "3.37.0"
+    tslib "^2.3.0"
+
+"@aws-sdk/signature-v4@3.45.0":
+  version "3.45.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4/-/signature-v4-3.45.0.tgz#1852f3ad0447c9788f2454a7cfec2182b30eadac"
+  integrity sha512-73dwNe4R4Ytgn82gV8B99tE6UqrWjHE1JIAXpEZeXsBPJtg+8wpgd9sujs6JH9JW2cvnSnIsCXs1gQGD9+bZ0A==
   dependencies:
     "@aws-sdk/is-array-buffer" "3.37.0"
     "@aws-sdk/types" "3.40.0"
