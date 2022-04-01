@@ -18,10 +18,10 @@
     "test:dotenv:coverage": "jest --setupFiles dotenv/config --coverage"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.54.0",
-    "@aws-sdk/s3-request-presigner": "^3.54.0",
+    "@aws-sdk/client-s3": "^3.56.0",
+    "@aws-sdk/s3-request-presigner": "^3.56.0",
     "@hapi/hapi": "^20.2.1",
-    "@hapi/jwt": "^2.1.0",
+    "@hapi/jwt": "^2.1.1",
     "amqplib": "^0.8.0",
     "argon2": "^0.28.5",
     "dotenv": "^16.0.0",
