@@ -65,11 +65,11 @@ jobs:
         run: yarn lerna run test:coverage
       - name: Upload to Codecov
         if: ${{ matrix.node-version == '16.x' }}
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
       - name: Build
         run: yarn lerna run build
       - name: Store Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ matrix.node-version == '16.x' }}
         with:
           name: compiled-libs
@@ -84,7 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download a single artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: compiled-libs
           path: packages/
