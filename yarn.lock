@@ -662,9 +662,9 @@
     tslib "^2.3.1"
 
 "@aws-sdk/s3-request-presigner@^3.88.0":
-  version "3.88.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.88.0.tgz#4a4a977dd806e49268e7880c7d095b75eb91c31a"
-  integrity sha512-Ms3Fx+9HBV4llP5ZFrZ9LRQ6GTWGQs1ooX6kmdnzC1uNhKhAdcPrs4ngDQ4xqSsOCF77KMPaxRDTjj9o1DGqIQ==
+  version "3.95.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.95.0.tgz#e8222d016ac025a2f89965c3193eb0abece8c828"
+  integrity sha512-mZPE/AAHcXAnIR41AV7FeKj2YPclYPp0vccrYQW/pQHgyMSVXcQQm52XnG2FwIjAK+BH4/fgCqYXevc7kOpi+g==
   dependencies:
     "@aws-sdk/middleware-sdk-s3" "3.86.0"
     "@aws-sdk/protocol-http" "3.78.0"
@@ -719,15 +719,10 @@
     "@aws-sdk/types" "3.78.0"
     tslib "^2.3.1"
 
-"@aws-sdk/types@3.78.0":
+"@aws-sdk/types@3.78.0", "@aws-sdk/types@^3.1.0":
   version "3.78.0"
   resolved "https://registry.npmjs.org/@aws-sdk/types/-/types-3.78.0.tgz#51dc80b2142ee20821fb9f476bdca6e541021443"
   integrity sha512-I9PTlVNSbwhIgMfmDM5as1tqRIkVZunjVmfogb2WVVPp4CaX0Ll01S0FSMSLL9k6tcQLXqh45pFRjrxCl9WKdQ==
-
-"@aws-sdk/types@^3.1.0":
-  version "3.53.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/types/-/types-3.53.0.tgz#fcc1db0c2114e94e8b9fd5b14b410aef6cd36b95"
-  integrity sha512-FqHfWRXdnQvfxgngDKfYpYOuQ1HmPgxaGKELx3pFaEnQdMo/dMXjfBGQcEQgP8jqU6bPLaJSfykjWjDzua8JBg==
 
 "@aws-sdk/url-parser@3.78.0":
   version "3.78.0"
