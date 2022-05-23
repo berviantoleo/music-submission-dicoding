@@ -22,7 +22,7 @@
     "@aws-sdk/s3-request-presigner": "^3.88.0",
     "@hapi/hapi": "^20.2.1",
     "@hapi/jwt": "^2.1.1",
-    "amqplib": "^0.8.0",
+    "amqplib": "^0.9.1",
     "argon2": "^0.28.5",
     "dotenv": "^16.0.0",
     "joi": "^17.6.0",
