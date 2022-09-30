@@ -30,7 +30,7 @@
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.8.0",
     "redis": "^4.1.1",
-    "sequelize": "^6.23.0"
+    "sequelize": "^6.23.1"
   },
   "devDependencies": {
     "@types/amqplib": "^0.8.2",
