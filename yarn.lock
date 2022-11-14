@@ -3478,9 +3478,9 @@ arg@^4.1.0:
   integrity sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==
 
 argon2@^0.30.1:
-  version "0.30.1"
-  resolved "https://registry.npmjs.org/argon2/-/argon2-0.30.1.tgz#7c719b27956553c7066a07583bc0a36f5b3ef9b5"
-  integrity sha512-wJYS8ebn6zHZwv4/iOOdlW1KUuLdbyIyhGsT51j6d9l5cRrHQU8pl817ubAxNgnS1jrbW/NGwegN3YrV0d5jRg==
+  version "0.30.2"
+  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.30.2.tgz#b308a039d6d0cda5a3c47cbddd12685f033c33fa"
+  integrity sha512-RBbXTUsrJUQH259/72CCJxQa0hV961pV4PyZ7R1czGkArSsQP4DToCS2axmNfHywXaBNEMPWMW6rM82EArulYA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.10"
     "@phc/format" "^1.0.0"
