@@ -34,7 +34,7 @@
     "sequelize": "^6.25.4"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.8.2",
+    "@types/amqplib": "^0.10.0",
     "@types/nodemailer": "^6.4.6",
     "@types/pg": "^8.6.5"
   }
