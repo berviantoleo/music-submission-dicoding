@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.1",
-    "@types/hapi__hapi": "^20.0.13",
+    "@types/hapi__hapi": "^21.0.0",
     "@types/hapi__jwt": "^2.0.2"
   }
 }
