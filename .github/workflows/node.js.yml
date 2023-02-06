@@ -118,14 +118,14 @@ jobs:
             berviantoleo/music-consumer-dicoding
             ghcr.io/${{ github.repository }}-consumer
       - name: Build and push (Web API)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: packages/api
           push: true
           tags: ${{ steps.meta-webapi.outputs.tags }}
           labels: ${{ steps.meta-webapi.outputs.labels }}
       - name: Build and push (Consumer)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: packages/consumer
           push: true
