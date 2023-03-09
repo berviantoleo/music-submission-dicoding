@@ -14,7 +14,7 @@
     "start": "node lib/consumer.js",
     "start-dev": "ts-node-dev -r dotenv/config src/consumer.ts",
     "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --detectOpenHandles",
     "test:dotenv": "jest --setupFiles dotenv/config",
     "test:dotenv:coverage": "jest --setupFiles dotenv/config --coverage"
   },
