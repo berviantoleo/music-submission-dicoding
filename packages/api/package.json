@@ -13,7 +13,7 @@
     "lint": "eslint . --ext .ts",
     "migrate": "node-pg-migrate",
     "test": "jest",
-    "test:coverage": "jest --coverage --forceExits",
+    "test:coverage": "jest --coverage --forceExit",
     "test:dotenv": "jest --setupFiles dotenv/config",
     "test:dotenv:coverage": "jest --setupFiles dotenv/config --coverage"
   },
