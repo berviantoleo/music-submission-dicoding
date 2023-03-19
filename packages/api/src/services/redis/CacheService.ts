@@ -7,7 +7,7 @@ class CacheService {
       url: process.env.REDIS_SERVER || "",
     });
     this.client.on('error', (error: any) => {
-      console.error(error);
+      console.log(error);
     });
   }
 

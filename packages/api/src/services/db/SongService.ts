@@ -39,7 +39,7 @@ class SongService {
       });
       return result;
     } catch (error) {
-      console.error(error);
+      console.log(error);
       throw new InvariantError("Lagu gagal ditambahkan");
     }
   }

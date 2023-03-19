@@ -32,7 +32,7 @@ class UsersService {
       });
       return result;
     } catch (error) {
-      console.error(error);
+      console.log(error);
       throw new InvariantError('User gagal ditambahkan');
     }
   }
