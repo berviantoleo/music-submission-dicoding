@@ -64,13 +64,13 @@ jobs:
       - name: Test
         run: yarn lerna run test:coverage
       - name: Upload to Codecov
-        if: ${{ matrix.node-version == '16.x' }}
+        if: ${{ matrix.node-version == '18.x' }}
         uses: codecov/codecov-action@v3
       - name: Build
         run: yarn lerna run build
       - name: Store Artifacts
         uses: actions/upload-artifact@v3
-        if: ${{ matrix.node-version == '16.x' }}
+        if: ${{ matrix.node-version == '18.x' }}
         with:
           name: compiled-libs
           path: |
