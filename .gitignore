@@ -74,3 +74,10 @@ typings/
 
 # FuseBox cache
 .fusebox/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
