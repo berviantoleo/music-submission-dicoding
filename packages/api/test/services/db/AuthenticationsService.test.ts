@@ -1,7 +1,6 @@
 import InvariantError from "../../../src/exceptions/InvariantError";
 import AuthenticationsService from "../../../src/services/db/AuthenticationsService";
 import sequelize from "../../../src/sequelize";
-import { SongRequest } from "../../../src/models/requests/SongRequest";
 
 jest.mock('../../../src/services/redis/CacheService');
 
