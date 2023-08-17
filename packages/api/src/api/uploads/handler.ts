@@ -14,6 +14,7 @@ class UploadsHandler {
   }
 
   async uploadPictures(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data } = request.payload as Record<string, any>;
     this.validator.validateImageHeaders(data.hapi.headers);
     const pictureUrl = await this.service.writeFile(data, data.hapi);

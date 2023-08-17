@@ -11,6 +11,5 @@
     },
     "packages": [
         "packages/*"
-    ],
-    "useWorkspaces": true
+    ]
 }

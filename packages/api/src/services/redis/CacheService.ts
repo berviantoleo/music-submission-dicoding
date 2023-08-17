@@ -6,6 +6,7 @@ class CacheService {
     this.client = createClient({
       url: process.env.REDIS_SERVER || "",
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.client.on('error', (error: any) => {
       console.log(error);
     });
