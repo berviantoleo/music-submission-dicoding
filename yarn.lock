@@ -449,9 +449,9 @@
     tslib "^2.5.0"
 
 "@aws-sdk/s3-request-presigner@^3.391.0":
-  version "3.391.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.391.0.tgz#67cdf20d4940e03e8c8c671c072ef29a498689d8"
-  integrity sha512-2cV6utjfV/8EvJjyBSowoYpmCy4HWb7b7PhkdJB5a3hItxi2NdWX2AZhSBit6xYhUdHvOuXcfG4TMGyH5S2NVQ==
+  version "3.395.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.395.0.tgz#42339edd2e41aa2f571fa20422faf2f60b6fa4ac"
+  integrity sha512-SLjka5OY33gXS40CKhde/t8HZp6lMEv9oQzKrtDekXQp5t/iC6SrXincfA69Q34CZe7LFeeBEHsM9mrA1GgRoA==
   dependencies:
     "@aws-sdk/signature-v4-multi-region" "3.391.0"
     "@aws-sdk/types" "3.391.0"
@@ -514,19 +514,12 @@
     "@smithy/util-utf8" "^2.0.0"
     tslib "^2.5.0"
 
-"@aws-sdk/types@3.391.0":
+"@aws-sdk/types@3.391.0", "@aws-sdk/types@^3.222.0":
   version "3.391.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/types/-/types-3.391.0.tgz#d49b0130943f0c60fd9bc99b2a47ec9720e2dd07"
   integrity sha512-QpYVFKMOnzHz/JMj/b8wb18qxiT92U/5r5MmtRz2R3LOH6ooTO96k4ozXCrYr0qNed1PAnOj73rPrrH2wnCJKQ==
   dependencies:
     "@smithy/types" "^2.2.0"
-    tslib "^2.5.0"
-
-"@aws-sdk/types@^3.222.0":
-  version "3.329.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/types/-/types-3.329.0.tgz#bc20659abfcd666954196c3a24ad47785db80dd3"
-  integrity sha512-wFBW4yciDfzQBSFmWNaEvHShnSGLMxSu9Lls6EUf6xDMavxSB36bsrVRX6CyAo/W0NeIIyEOW1LclGPgJV1okg==
-  dependencies:
     tslib "^2.5.0"
 
 "@aws-sdk/util-arn-parser@3.310.0":
