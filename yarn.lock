@@ -2670,9 +2670,9 @@
     "@types/node" "*"
 
 "@types/hapi__jwt@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/@types/hapi__jwt/-/hapi__jwt-2.0.2.tgz#1d7dd1126334fd03b05c2bc1159b93cb710ca55d"
-  integrity sha512-2opesqXaHo7H5danV8PlX0Ir+b06MGiiFEaLXHUdeteDowMZmPpRaaNAYBLH3icqkvFPIMAlWq6eNF6h9D31lw==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.3.tgz#a2efdc356fc4d2f56fc862b47c673abd51567308"
+  integrity sha512-3+b1THJTendL2hh4wnjie3cNMYjmcgzDgQ1qa2Or2iTQ3GvROwyjr16BsGOz++58agfTNg4vyML1iZcJ+6IwHA==
   dependencies:
     "@hapi/hapi" "^21.1.0"
     joi "^17.7.0"
