@@ -105,14 +105,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker metadata Web API
         id: meta-webapi
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             berviantoleo/music-api-dicoding
             ghcr.io/${{ github.repository }}
       - name: Docker metadata Consumer
         id: meta-consumer
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             berviantoleo/music-consumer-dicoding
