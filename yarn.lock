@@ -2661,11 +2661,12 @@
     "@types/node" "*"
 
 "@types/hapi__jwt@^2.0.2":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.3.tgz#a2efdc356fc4d2f56fc862b47c673abd51567308"
-  integrity sha512-3+b1THJTendL2hh4wnjie3cNMYjmcgzDgQ1qa2Or2iTQ3GvROwyjr16BsGOz++58agfTNg4vyML1iZcJ+6IwHA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.4.tgz#ef2ae0c3b3ea79e43352e7337051fa43489fdc18"
+  integrity sha512-8V4G4d31KCraYjYgPIDVAFWM9o2m4sqYf2CfKKjJ1xkZVD9r38ref0933ALxblbdgLFYr+O1h/SMcWe3CPa5DA==
   dependencies:
     "@hapi/hapi" "^21.1.0"
+    "@types/node" "*"
     joi "^17.7.0"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
