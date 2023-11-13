@@ -2705,9 +2705,9 @@
     "@types/node" "*"
 
 "@types/hapi__jwt@^2.0.2":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.4.tgz#ef2ae0c3b3ea79e43352e7337051fa43489fdc18"
-  integrity sha512-8V4G4d31KCraYjYgPIDVAFWM9o2m4sqYf2CfKKjJ1xkZVD9r38ref0933ALxblbdgLFYr+O1h/SMcWe3CPa5DA==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.5.tgz#fccba5835a78b47e4bc32260d878e94ae938348c"
+  integrity sha512-9SBnoOnODrO1VtaU/kB+8anDk9avF+6CjNB69Cjfbn0LCPdNdr2ZpZmCffNJ6a6eMq7trbX5iHRqgknfKcy0mw==
   dependencies:
     "@hapi/hapi" "^21.1.0"
     "@types/node" "*"
