@@ -27,7 +27,7 @@
     "dotenv": "^16.0.3",
     "joi": "^17.9.2",
     "nanoid": "^3.3.4",
-    "node-pg-migrate": "^6.2.2",
+    "node-pg-migrate": "^7.2.0",
     "pg": "^8.11.0",
     "redis": "^4.6.6",
     "sequelize": "^6.31.1"
