@@ -29,7 +29,7 @@
     "nanoid": "^3.3.4",
     "node-pg-migrate": "^7.2.0",
     "pg": "^8.11.0",
-    "redis": "^4.6.6",
+    "redis": "^5.0.1",
     "sequelize": "^6.31.1"
   },
   "devDependencies": {
