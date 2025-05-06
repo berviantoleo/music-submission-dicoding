@@ -62,7 +62,7 @@ jobs:
       - name: Migrate DB
         run: yarn lerna run migrate --scope=@berviantoleo/music-api -- -- up
       - name: Test
-        run: yarn lerna run test:coverage -- --runInBand
+        run: yarn lerna run test:coverage --runInBand
       - name: Upload to Codecov
         if: ${{ matrix.node-version == '20.x' }}
         uses: codecov/codecov-action@v5
