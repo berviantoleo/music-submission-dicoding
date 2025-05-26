@@ -6135,10 +6135,10 @@ node-machine-id@1.1.12:
   resolved "https://registry.yarnpkg.com/node-machine-id/-/node-machine-id-1.1.12.tgz#37904eee1e59b320bb9c5d6c0a59f3b469cb6267"
   integrity sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ==
 
-node-pg-migrate@^7.2.0:
-  version "7.9.1"
-  resolved "https://registry.yarnpkg.com/node-pg-migrate/-/node-pg-migrate-7.9.1.tgz#b8b9b7dafa6321e9567171ea20649a3146656c69"
-  integrity sha512-6z4OSN27ye8aYdX9ZU7NN2PTI5pOp34hTr+22Ej12djIYECq++gT7LPLZVOQXEeVCBOZQLqf87kC3Y36G434OQ==
+node-pg-migrate@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/node-pg-migrate/-/node-pg-migrate-8.0.0.tgz#00f328dfe0418afee1de5fcd4b08b5e33b7a60dc"
+  integrity sha512-ll9vkoteNHIaLM7bawoEU8MHsJXB9Zy6fC2OVgQeV+KuddCnylRF6bcQaQ3U4JctoadDBrCiVBEPoqoz4dH7zw==
   dependencies:
     glob "~11.0.0"
     yargs "~17.7.0"
