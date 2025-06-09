@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x, 24.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@v4
@@ -64,13 +64,13 @@ jobs:
       - name: Test
         run: yarn lerna run test:coverage -- -- --runInBand
       - name: Upload to Codecov
-        if: ${{ matrix.node-version == '20.x' }}
+        if: ${{ matrix.node-version == '22.x' }}
         uses: codecov/codecov-action@v5
       - name: Build
         run: yarn lerna run build
       - name: Store Artifacts
         uses: actions/upload-artifact@v4
-        if: ${{ matrix.node-version == '20.x' }}
+        if: ${{ matrix.node-version == '22.x' }}
         with:
           name: compiled-libs
           path: |
@@ -80,7 +80,7 @@ jobs:
     needs: "build"
     name: "Docker Build"
     if: ${{ github.event_name == 'push' }}
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-24.04"
     steps:
       - uses: actions/checkout@v4
       - name: Download a single artifact

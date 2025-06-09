@@ -66,7 +66,7 @@ class PlaylistsService {
 
   async addSongToPlaylist({ playlistId, songId }: { playlistId: string, songId: string }): Promise<void> {
     await this.songService.getSongById(songId);
-    const id = `ps-${nanoid(16)}`;
+    const id = `ps-${uuidv7()}`;
     const query = {
       text: 'INSERT INTO playlistsongs VALUES($1, $2, $3) RETURNING id',
       values: [id, playlistId, songId],
