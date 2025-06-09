@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
-import { ModelCtor, Sequelize } from 'sequelize';
+import { v7 as uuidv7 } from 'uuid';
+import { ModelStatic, Sequelize } from 'sequelize';
 
 import NotFoundError from '../../exceptions/NotFoundError';
 import InvariantError from '../../exceptions/InvariantError';
@@ -10,12 +10,12 @@ import { Song } from '../../models/Song';
 
 
 class SongService {
-  private db: ModelCtor<Song>;
+  private db: ModelStatic<Song>;
   private sequelize: Sequelize;
   private cacheService: CacheService;
 
   constructor(cacheService: CacheService, sequelize: Sequelize) {
-    this.db = sequelize.models.Song as ModelCtor<Song>;
+    this.db = sequelize.models.Song as ModelStatic<Song>;
     this.cacheService = cacheService;
     this.sequelize = sequelize;
   }
@@ -25,7 +25,7 @@ class SongService {
   }: SongRequest): Promise<string> {
     try {
       const result = await this.sequelize.transaction(async transaction => {
-        const id = `song-${nanoid(16)}`;
+        const id = `song-${uuidv7()}`;
         const createdSong = await this.db.create({
           id,
           title,

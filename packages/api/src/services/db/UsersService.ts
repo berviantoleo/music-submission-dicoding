@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid';
+import { v7 as uuidv7 } from 'uuid';
 import argon2 from 'argon2';
-import { ModelCtor, Sequelize } from 'sequelize';
+import { ModelStatic, Sequelize } from 'sequelize';
 import InvariantError from '../../exceptions/InvariantError';
 import NotFoundError from '../../exceptions/NotFoundError';
 import AuthenticationError from '../../exceptions/AuthenticationError';
@@ -8,12 +8,12 @@ import { UserCreationRequest } from '../../models/requests/UserCreationRequest';
 import { User } from '../../models/User';
 
 class UsersService {
-  private db: ModelCtor<User>;
+  private db: ModelStatic<User>;
   private sequelize: Sequelize;
 
   constructor(sequelize: Sequelize) {
     this.sequelize = sequelize;
-    this.db = sequelize.models.User as ModelCtor<User>;
+    this.db = sequelize.models.User as ModelStatic<User>;
   }
 
   async addUser({ username, password, fullname }: UserCreationRequest): Promise<string> {
@@ -21,7 +21,7 @@ class UsersService {
     try {
       await this.verifyNewUsername(username);
       const result = this.sequelize.transaction(async (transaction) => {
-        const id = `user-${nanoid(16)}`;
+        const id = `user-${uuidv7()}`;
         const hashedPassword = await argon2.hash(password);
 
         const createdUser = await this.db.create({

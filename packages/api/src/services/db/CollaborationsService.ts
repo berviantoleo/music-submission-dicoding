@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { nanoid } from 'nanoid';
+import { v7 as uuidv7 } from 'uuid';
 import InvariantError from '../../exceptions/InvariantError';
 
 class CollaborationsService {
@@ -9,7 +9,7 @@ class CollaborationsService {
   }
 
   async addCollaboration(playlistId: string, userId: string): Promise<string> {
-    const id = `collab-${nanoid(16)}`;
+    const id = `collab-${uuidv7()}`;
     const query = {
       text: 'INSERT INTO collaborations VALUES($1, $2, $3) RETURNING id',
       values: [id, playlistId, userId],
