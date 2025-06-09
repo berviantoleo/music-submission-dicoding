@@ -1,12 +1,12 @@
-import { ModelCtor, Sequelize } from 'sequelize';
+import { ModelStatic, Sequelize } from 'sequelize';
 import InvariantError from '../../exceptions/InvariantError';
 import { Authentication } from '../../models/Authentication';
 
 class AuthenticationsService {
 
-  private db: ModelCtor<Authentication>;
+  private db: ModelStatic<Authentication>;
   constructor(sequelize: Sequelize) {
-    this.db = sequelize.models.Authentication as ModelCtor<Authentication>;
+    this.db = sequelize.models.Authentication as ModelStatic<Authentication>;
   }
 
   async addRefreshToken(token: string): Promise<void> {

@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { nanoid } from 'nanoid';
+import { v7 as uuidv7 } from 'uuid';
 import CacheService from "../redis/CacheService";
 import CollaborationsService from "./CollaborationsService";
 import SongService from "./SongService";
@@ -23,7 +23,7 @@ class PlaylistsService {
   }
 
   async createPlaylist({ name, owner }: { name: string, owner: string }): Promise<string> {
-    const id = `playlist-${nanoid(16)}`;
+    const id = `playlist-${uuidv7()}`;
 
     const query = {
       text: 'INSERT INTO playlists VALUES($1, $2, $3) RETURNING id',
