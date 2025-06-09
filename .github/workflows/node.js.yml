@@ -80,7 +80,7 @@ jobs:
     needs: "build"
     name: "Docker Build"
     if: ${{ github.event_name == 'push' }}
-    runs-on: "ubuntu-24.04"
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Download a single artifact
