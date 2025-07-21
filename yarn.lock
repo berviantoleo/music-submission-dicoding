@@ -1302,7 +1302,7 @@
   resolved "https://registry.npmjs.org/@hapi/file/-/file-3.0.0.tgz#f1fd824493ac89a6fceaf89c824afc5ae2121c09"
   integrity sha512-w+lKW+yRrLhJu620jT3y+5g2mHqnKfepreykvdOcl9/6up8GrQQn+l3FRTsjHTKbkbfQFkuksHpdv2EcpKcJ4Q==
 
-"@hapi/hapi@^21.1.0", "@hapi/hapi@^21.3.2":
+"@hapi/hapi@^21.3.2":
   version "21.4.0"
   resolved "https://registry.yarnpkg.com/@hapi/hapi/-/hapi-21.4.0.tgz#6f1493ffd6d83ef2d06a95b6e855f554545e3703"
   integrity sha512-kqiRWbYYLSSt2rYbxyNj8svPsXP715p4W/K3OXpXeiiVLNSdBX4f+zfmC+dY6eyb6rqTqTAbx6x8b5HpJTkviQ==
@@ -1361,7 +1361,7 @@
     "@hapi/cryptiles" "^6.0.1"
     "@hapi/hoek" "^11.0.2"
 
-"@hapi/jwt@^3.2.0":
+"@hapi/jwt@*", "@hapi/jwt@^3.2.0":
   version "3.2.0"
   resolved "https://registry.npmjs.org/@hapi/jwt/-/jwt-3.2.0.tgz#1d4aaf7c8821b99437061733224604e6c36dbf42"
   integrity sha512-2EU5zdr0petG63J2RHiagGByA1Qr6qzxMmrJJ3/0cm78be1Lq4vi038YgKJvbBSxSboIp5SWGZdYB6+CJlqEoQ==
@@ -3019,14 +3019,12 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/hapi__jwt@^2.0.2":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.5.tgz#fccba5835a78b47e4bc32260d878e94ae938348c"
-  integrity sha512-9SBnoOnODrO1VtaU/kB+8anDk9avF+6CjNB69Cjfbn0LCPdNdr2ZpZmCffNJ6a6eMq7trbX5iHRqgknfKcy0mw==
+"@types/hapi__jwt@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-3.2.0.tgz#fd10c28b02a29b5853e885dd6f692c0b697459b3"
+  integrity sha512-EYDGt/Q6YWP0WcWwUhV9xMKTEjzjRhCM92+8jMAC3L++6XX/0cro2ThKqVbCZ5W+7yxTmSv9TvZgYkiA2EVN3g==
   dependencies:
-    "@hapi/hapi" "^21.1.0"
-    "@types/node" "*"
-    joi "^17.7.0"
+    "@hapi/jwt" "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
@@ -5850,7 +5848,7 @@ jest@^30.0.2:
     import-local "^3.2.0"
     jest-cli "30.0.4"
 
-joi@^17.2.1, joi@^17.7.0, joi@^17.9.2:
+joi@^17.2.1, joi@^17.9.2:
   version "17.13.3"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.13.3.tgz#0f5cc1169c999b30d344366d384b12d92558bcec"
   integrity sha512-otDA4ldcIx+ZXsKHWmp0YizCweVRZG96J10b0FevjfuncLO1oX59THoAmHkNubYJ+9gWsYsp5k8v4ib6oDv1fA==
