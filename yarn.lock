@@ -1319,7 +1319,7 @@
   resolved "https://registry.yarnpkg.com/@hapi/formula/-/formula-3.0.2.tgz#81b538060ee079481c906f599906d163c4badeaf"
   integrity sha512-hY5YPNXzw1He7s0iqkRQi+uMGh383CGdyyIGYtB+W5N3KHPXoqychklvHhKCC9M3Xtv0OCs/IHw+r4dcHtBYWw==
 
-"@hapi/hapi@^21.1.0", "@hapi/hapi@^21.3.2":
+"@hapi/hapi@^21.3.2":
   version "21.4.3"
   resolved "https://registry.yarnpkg.com/@hapi/hapi/-/hapi-21.4.3.tgz#e829eef35659d7618831f4431382229107a71d07"
   integrity sha512-Q7g0ZY4gxU69wabFKH75qR0AFOdiOECj6vGqTHBSO5Lrwe6TwD8r9LkYQIbvtG8N423VDpdVsiZP8MnBwmD6Hw==
@@ -1378,7 +1378,7 @@
     "@hapi/cryptiles" "^6.0.1"
     "@hapi/hoek" "^11.0.2"
 
-"@hapi/jwt@^3.2.0":
+"@hapi/jwt@*", "@hapi/jwt@^3.2.0":
   version "3.2.0"
   resolved "https://registry.npmjs.org/@hapi/jwt/-/jwt-3.2.0.tgz#1d4aaf7c8821b99437061733224604e6c36dbf42"
   integrity sha512-2EU5zdr0petG63J2RHiagGByA1Qr6qzxMmrJJ3/0cm78be1Lq4vi038YgKJvbBSxSboIp5SWGZdYB6+CJlqEoQ==
@@ -3074,14 +3074,12 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/hapi__jwt@^2.0.2":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.5.tgz#fccba5835a78b47e4bc32260d878e94ae938348c"
-  integrity sha512-9SBnoOnODrO1VtaU/kB+8anDk9avF+6CjNB69Cjfbn0LCPdNdr2ZpZmCffNJ6a6eMq7trbX5iHRqgknfKcy0mw==
+"@types/hapi__jwt@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-3.2.0.tgz#fd10c28b02a29b5853e885dd6f692c0b697459b3"
+  integrity sha512-EYDGt/Q6YWP0WcWwUhV9xMKTEjzjRhCM92+8jMAC3L++6XX/0cro2ThKqVbCZ5W+7yxTmSv9TvZgYkiA2EVN3g==
   dependencies:
-    "@hapi/hapi" "^21.1.0"
-    "@types/node" "*"
-    joi "^17.7.0"
+    "@hapi/jwt" "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
@@ -6049,7 +6047,7 @@ jest@^30.0.2:
     import-local "^3.2.0"
     jest-cli "30.0.5"
 
-joi@^17.2.1, joi@^17.7.0:
+joi@^17.2.1:
   version "17.13.3"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.13.3.tgz#0f5cc1169c999b30d344366d384b12d92558bcec"
   integrity sha512-otDA4ldcIx+ZXsKHWmp0YizCweVRZG96J10b0FevjfuncLO1oX59THoAmHkNubYJ+9gWsYsp5k8v4ib6oDv1fA==
