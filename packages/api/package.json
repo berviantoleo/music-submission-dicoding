@@ -33,7 +33,6 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.10.1",
-    "@types/hapi__jwt": "^2.0.2"
+    "@types/amqplib": "^0.10.1"
   }
 }
