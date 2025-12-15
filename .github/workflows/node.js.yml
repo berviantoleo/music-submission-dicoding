@@ -84,7 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Download a single artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: compiled-libs
           path: packages/
