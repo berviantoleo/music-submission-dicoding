@@ -65,7 +65,7 @@ jobs:
         run: yarn lerna run test:coverage -- -- --runInBand
       - name: Upload to Codecov
         if: ${{ matrix.node-version == '22.x' }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
       - name: Build
         run: yarn lerna run build
       - name: Store Artifacts
