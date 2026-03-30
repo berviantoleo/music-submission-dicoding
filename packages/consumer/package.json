@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/berviantoleo/music-submission-dicoding#readme",
   "dependencies": {
-    "amqplib": "^0.10.8",
+    "amqplib": "^1.0.2",
     "dotenv": "^17.2.1",
     "nodemailer": "^8.0.1",
     "pg": "^8.16.3",
